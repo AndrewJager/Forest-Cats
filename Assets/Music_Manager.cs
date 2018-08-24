@@ -26,7 +26,6 @@ public class Music_Manager : MonoBehaviour {
 			player.clip = song;
 			player.loop = false;
 			player.Play();
-			player.pitch = 4;
 		}
 		else if (state == MusicState.fight){
 

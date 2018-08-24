@@ -22,6 +22,7 @@ public class Player_Control : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		catControl.catName = Utils.RandWarriorName() + "\n";
+		Utils.usedNames.Add(catControl.catName);
 	}
 	
 	// Update is called once per frame

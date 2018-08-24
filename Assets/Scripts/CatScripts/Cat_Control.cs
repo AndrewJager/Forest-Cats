@@ -33,7 +33,9 @@ public class Cat_Control : MonoBehaviour {
 	public bool leftOfTree;
 	//
 	public string catName;
-	public string rank;
+	public string alligence;
+	public enum Rank {None, Kit, Apprentice, Warrior, Healer, Deputy, Leader};
+	public Rank rank;
 	public int age; //Moons
 
 	private 

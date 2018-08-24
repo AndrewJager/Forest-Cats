@@ -24,6 +24,8 @@ public class Cat_Utilites : MonoBehaviour {
 	    "berry","nose","ear","eye","flight","flower","cloud","poppy","step","frost","belly",
 	    "tooth","eyes","shade","fern","leg","scar","water"
 	};
+
+	public List <string> usedNames;
 	
 	public string RandFirstName (){
 		return firstNames[Random.Range(0, firstNames.Length)];
@@ -43,5 +45,9 @@ public class Cat_Utilites : MonoBehaviour {
 
 	public string RandLeaderName (){
 		return RandFirstName() + "star";
+	}
+
+	public string RandKitName(){
+		return RandFirstName() + "kit";
 	}
 }
