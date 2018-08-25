@@ -8,6 +8,7 @@ public class Manager_Script : MonoBehaviour {
 	public int currentScene;
 	public string PlayerName;
 	public List <string> values;
+	public Dictionary<int, string> test = new Dictionary <int, string>();
 
 	public void Start (){
 		PlayerName = "Player Name";

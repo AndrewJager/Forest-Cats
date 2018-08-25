@@ -11,12 +11,14 @@ public class Input_Script : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		input = GetComponent<UnityEngine.UI.Text>();
+		value = manager.values[valueToWriteTo];
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (input.text != value){
 			manager.values[valueToWriteTo] = input.text;
+			value = input.text;
 		}
 	}
 }

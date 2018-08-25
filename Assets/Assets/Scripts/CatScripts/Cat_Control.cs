@@ -7,9 +7,6 @@ public class Cat_Control : MonoBehaviour {
 	public Rigidbody2D physics;
 	[HideInInspector] public TextMesh text;
 	[HideInInspector] private ConstantForce2D climbForce;
-	
-	public float debugVal;
-	public float debugVal2;
 
 	//Control variables
 	[HideInInspector] public bool goRight;

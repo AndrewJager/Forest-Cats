@@ -15,7 +15,7 @@ public class Location_Control : MonoBehaviour {
 	public float maxHeight;
 	public float offset;
 	[HideInInspector] public bool inZone;
-	[HideInInspector] public bool isTree;
+	readonly public bool isTree;
 	[HideInInspector] public bool isPlayerLeft;
 	private float playerX;
 	private float playerY;
@@ -23,9 +23,14 @@ public class Location_Control : MonoBehaviour {
 	private bool isReset;
 	public float spawnX;
 	public float spawnY;
+
+	public Location_Control(){
+	if (zoneType == ZoneType.Tree){
+			isTree = true;
+		}
+	}
 	void Start () {
 		if (zoneType == ZoneType.Tree){
-			isTree = true;
 			zoneName = "Tree";
 		}
 		if (spawn != null){
