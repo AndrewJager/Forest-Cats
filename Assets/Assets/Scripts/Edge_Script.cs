@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 //Script for changeing levels when at edge of map
 public class Edge_Script : MonoBehaviour {
 	public bool goToNewLevel;
+	public bool startNewLevel;
 	public int newScene;
 	[HideInInspector] public Collider2D hitBox;
 
@@ -14,6 +15,7 @@ public class Edge_Script : MonoBehaviour {
 		if (goToNewLevel){
 			hitBox.isTrigger = true;
 		}
+		startNewLevel = false;
 	}
 	
 	// Update is called once per frame
@@ -22,11 +24,7 @@ public class Edge_Script : MonoBehaviour {
 	}
 	void OnTriggerEnter2D(Collider2D other){
 		if (goToNewLevel){
-			ChangeLevel();
+			startNewLevel = true;
 		}	
-	}
-
-	void ChangeLevel (){
-		SceneManager.LoadScene(newScene);
 	}
 }

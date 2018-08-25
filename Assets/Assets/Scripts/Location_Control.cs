@@ -5,6 +5,7 @@ using UnityEngine;
 //Script for colliders used by player
 public class Location_Control : MonoBehaviour {
 	public GameObject player;
+	public GameObject spawn;
 	public Cat_Control player_script;
 	public UnityEngine.UI.Text UIText;
 	public string zoneName;
@@ -20,10 +21,16 @@ public class Location_Control : MonoBehaviour {
 	private float playerY;
 	private float zoneX;
 	private bool isReset;
+	public float spawnX;
+	public float spawnY;
 	void Start () {
 		if (zoneType == ZoneType.Tree){
 			isTree = true;
 			zoneName = "Tree";
+		}
+		if (spawn != null){
+			spawnX = spawn.transform.position.x;
+			spawnY = spawn.transform.position.y;
 		}
 	}
 	
