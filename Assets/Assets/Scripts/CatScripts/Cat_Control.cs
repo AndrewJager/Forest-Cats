@@ -24,6 +24,7 @@ public class Cat_Control : MonoBehaviour {
 	private float walkSpeed = 1.5f;
 	private float runBoost = 1.5f;
 	private float speed = 0;
+	private float climb = 1;
 	private bool onGround = false;
 	private Vector2 jump = new Vector2(1f,2.5f);
 	private int counter = 0;
@@ -81,6 +82,7 @@ public class Cat_Control : MonoBehaviour {
 	
 		physics.constraints = RigidbodyConstraints2D.FreezeRotation;//default values
 		climbForce.force = new Vector2 (0f, 0f);
+
 		//Control jumping/climbing
 		if (!onTree){
 			if(goUp){
@@ -91,23 +93,23 @@ public class Cat_Control : MonoBehaviour {
 		}
 		else{// on a tree
 			if (goUp){
-				climbForce.force = new Vector2 (0f, 40f);
+				climb = 1.4f;
 			}
 			else if (!onGround){
 				if (goDown){
-					climbForce.force = new Vector2 (0f, 30f);
+					climb = -1f;
 				}
 				else{// hold position
-					physics.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
-					climbForce.force = new Vector2 (0f, 40f);
+					climb = 0.4f;
 				}
 			}
 		}
-		if (onTree && !onGround){
+		if (onTree && !onGround){//climbing sprite control
 			if (leftOfTree){
 				if (physics.velocity.y > 0){
 					spriteControl.overrideFlipX(true);
 					spriteControl.rotateSprite(90);
+					//spriteControl.walkRight();
 				}
 				else if (physics.velocity.y < 0){
 					spriteControl.overrideFlipX(false);
@@ -131,7 +133,12 @@ public class Cat_Control : MonoBehaviour {
 			spriteControl.sit();
 		}
 
-		physics.velocity = new Vector2 (speed, physics.velocity.y);	
+		if (onTree){
+			physics.velocity = new Vector2 (speed, climb);	
+		}
+		else{
+			physics.velocity = new Vector2 (speed, physics.velocity.y);
+		}
 		
 		counter++;
 		if (counter >= 0){// Don't run as much.

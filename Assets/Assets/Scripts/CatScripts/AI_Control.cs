@@ -31,6 +31,8 @@ public class AI_Control : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if (rank != catControl.rank){
+			catControl.rank = rank;
+		}
 	}
 }

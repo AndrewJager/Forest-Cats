@@ -4,23 +4,26 @@ using UnityEngine;
 
 //Script for colliders used by player
 public class Location_Control : MonoBehaviour {
-	public string zone;
 	public GameObject player;
 	public Cat_Control player_script;
 	public UnityEngine.UI.Text UIText;
+	public string zoneName;
+	public enum ZoneType {Den, Tree};
+	public ZoneType zoneType;
 	public float size;
 	public float maxHeight;
 	public float offset;
 	[HideInInspector] public bool inZone;
-	public bool isTree;
+	[HideInInspector] public bool isTree;
 	[HideInInspector] public bool isPlayerLeft;
 	private float playerX;
 	private float playerY;
 	private float zoneX;
 	private bool isReset;
 	void Start () {
-		if (isTree){
-			zone = "Tree";
+		if (zoneType == ZoneType.Tree){
+			isTree = true;
+			zoneName = "Tree";
 		}
 	}
 	
@@ -30,7 +33,7 @@ public class Location_Control : MonoBehaviour {
 		playerY = player.transform.position.y;
 		zoneX = transform.position.x + offset;
 		if ((playerX > (zoneX - (size / 2)) + offset && (playerX < (zoneX + (size / 2))))){
-			UIText.text = zone;
+			UIText.text = zoneName;
 			isReset = false;
 
 			if (playerX > zoneX){
