@@ -8,8 +8,8 @@ public class Manager_Script : MonoBehaviour {
 	public List <Edge_Script> exits;
 	public int currentScene;
 	public string PlayerName;
-	public List <string> values;
-	public Dictionary<int, string> test = new Dictionary <int, string>();
+	public List <string> settings;
+	public List <bool> boolSettings;
 
 	public void Start (){
 		PlayerName = "Player Name";
