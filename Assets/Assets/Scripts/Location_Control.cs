@@ -10,6 +10,7 @@ public class Location_Control : MonoBehaviour {
 	public UnityEngine.UI.Text UIText;
 	public float size;
 	public float maxHeight;
+	public float offset;
 	[HideInInspector] public bool inZone;
 	public bool isTree;
 	[HideInInspector] public bool isPlayerLeft;
@@ -27,8 +28,8 @@ public class Location_Control : MonoBehaviour {
 	void Update () {
 		playerX = player.transform.position.x;
 		playerY = player.transform.position.y;
-		zoneX = transform.position.x;
-		if ((playerX > (zoneX - (size / 2)) && (playerX < (zoneX + (size / 2))))){
+		zoneX = transform.position.x + offset;
+		if ((playerX > (zoneX - (size / 2)) + offset && (playerX < (zoneX + (size / 2))))){
 			UIText.text = zone;
 			isReset = false;
 
