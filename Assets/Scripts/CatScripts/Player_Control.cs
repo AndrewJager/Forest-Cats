@@ -21,7 +21,7 @@ public class Player_Control : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		catControl.catName = Utils.RandWarriorName() + "\n";
+		catControl.catName = Utils.RandWarriorName();
 		Utils.usedNames.Add(catControl.catName);
 	}
 	

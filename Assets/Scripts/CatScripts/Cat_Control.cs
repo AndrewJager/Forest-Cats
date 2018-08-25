@@ -50,7 +50,7 @@ public class Cat_Control : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		text.text = catName;//Hacky. Find a better way.
+		text.text = catName + "\n";//Hacky. Find a better way.
 		xPos = physics.position.x;
 		yPos = physics.position.y;
 		//Control X movement
