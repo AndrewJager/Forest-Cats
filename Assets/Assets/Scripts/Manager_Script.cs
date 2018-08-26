@@ -8,9 +8,12 @@ public class Manager_Script : MonoBehaviour {
 	public Player_Control player;
 	public List <Edge_Script> exits;
 	public int currentScene;
+	private int lastScene;
 	public string PlayerName;
 	public List <string> settings;
 	public List <bool> boolSettings;
+	public GameObject[] locations;// Locations in scene
+	public GameObject[] cats; // Cats in scene
 
 	public void Start (){
 		PlayerName = "Player Name";
@@ -23,6 +26,9 @@ public class Manager_Script : MonoBehaviour {
 	public void Update(){
 		Scene scene = SceneManager.GetActiveScene();
 		currentScene = scene.buildIndex;
+		if (currentScene != lastScene){
+			onSceneChange();
+		}
 		for (int i = 0; i < exits.Count; i++){
 			if (exits[i].startNewLevel == true){
 				RunScene(exits[i].newScene);
@@ -35,7 +41,7 @@ public class Manager_Script : MonoBehaviour {
 			music.state = Music_Manager.MusicState.homeNormal;
 		}
 
-		UpdateSettings();
+		cats = GameObject.FindGameObjectsWithTag("Cat"); 
 	}
 
 	void Awake(){
@@ -45,12 +51,8 @@ public class Manager_Script : MonoBehaviour {
 		SceneManager.LoadScene(scene);
 	}
 
-	public void UpdateSettings(){
-		if (music != null){
-			music.mute = boolSettings[0];
-		}
-		if (player != null){
-			player.catControl.name = settings[0];
-		}
+	public void onSceneChange(){
+		cats = GameObject.FindGameObjectsWithTag("Cat"); 
+		locations = GameObject.FindGameObjectsWithTag("Location");
 	}
 }

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Control : MonoBehaviour {
-	public Cat_Control catControl;
-	public Cat_Utilites Utils;
+	private Cat_Control catControl;
+	private Cat_Utilites utils;
 	public Chat_Text_Control chat;
+	private GameObject managerObject;
+	private Manager_Script manager;
 	
 	private bool isRight;
 	private bool isLeft;
@@ -21,8 +23,12 @@ public class Player_Control : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		catControl.catName = Utils.RandWarriorName();
-		Utils.usedNames.Add(catControl.catName);
+		managerObject = GameObject.FindGameObjectWithTag("Manager");
+		manager = managerObject.GetComponent<Manager_Script>();
+		utils = managerObject.GetComponent<Cat_Utilites>();
+		catControl = GetComponent<Cat_Control>();
+		catControl.catName = manager.settings[0];
+		utils.usedNames.Add(catControl.catName);
 	}
 	
 	// Update is called once per frame
@@ -74,6 +80,6 @@ public class Player_Control : MonoBehaviour {
 	}
 
 	void Speak(){
-		chat.newMessage(Utils.RandWarriorName());
+		chat.newMessage(utils.RandWarriorName());
 	}
 }

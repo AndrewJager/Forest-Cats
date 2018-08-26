@@ -5,6 +5,8 @@ using UnityEngine;
 public class Music_Manager : MonoBehaviour {
 	public bool mute;
 	public enum MusicState {homeNormal, mainMenu, fight};
+	private GameObject managerObject;
+	private Manager_Script manager;
 	public MusicState state;
 	private MusicState playingState;
 	public AudioClip [] home_normal;
@@ -12,6 +14,8 @@ public class Music_Manager : MonoBehaviour {
 	AudioSource player;
 	// Use this for initialization
 	void Start () {
+		managerObject = GameObject.FindGameObjectWithTag("Manager");
+		manager = managerObject.GetComponent<Manager_Script>();
 		player = GetComponent<AudioSource>();
 		player.loop = false;
 		PlaySong();
@@ -20,6 +24,7 @@ public class Music_Manager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		mute = manager.boolSettings[0];
 		if (player.isPlaying == false){
 			PlaySong();
 		}

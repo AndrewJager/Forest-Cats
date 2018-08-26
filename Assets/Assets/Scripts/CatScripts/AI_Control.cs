@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AI_Control : MonoBehaviour {
+	private GameObject managerObject;
+	private Manager_Script manager;
 	public Cat_Control catControl;
 	public Cat_Utilites utils;
 	public Cat_Control.Rank rank;
 	// Use this for initialization
 	void Start (){
+		managerObject = GameObject.FindGameObjectWithTag("Manager");
+		manager = managerObject.GetComponent<Manager_Script>();
 		string newName;
 		rank = catControl.rank;
 		if (rank == Cat_Control.Rank.Kit){

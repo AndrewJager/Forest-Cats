@@ -23,6 +23,7 @@ public class Menu_Control : MonoBehaviour {
 		middleTreeSpeed = speed * 2.0f;
 		lightSpeed = speed * 1.15f;
 		backTreeSpeed = speed * 1.0f;
+
 		goingLeft = true;
 	}
 	
