@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Manager_Script : MonoBehaviour {
 	private Music_Manager music;
+	public Player_Control player;
 	public List <Edge_Script> exits;
 	public int currentScene;
 	public string PlayerName;
@@ -33,6 +34,8 @@ public class Manager_Script : MonoBehaviour {
 		else if(currentScene == 1){// Camp
 			music.state = Music_Manager.MusicState.homeNormal;
 		}
+
+		UpdateSettings();
 	}
 
 	void Awake(){
@@ -40,5 +43,14 @@ public class Manager_Script : MonoBehaviour {
 	}
 	public void RunScene (int scene) {
 		SceneManager.LoadScene(scene);
+	}
+
+	public void UpdateSettings(){
+		if (music != null){
+			music.mute = boolSettings[0];
+		}
+		if (player != null){
+			player.catControl.name = settings[0];
+		}
 	}
 }

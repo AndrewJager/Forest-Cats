@@ -27,6 +27,9 @@ public class Music_Manager : MonoBehaviour {
 			PlaySong();
 			playingState = state;
 		}
+		if (mute){
+			player.Stop();
+		}
 	}
 
 	void PlaySong (){
