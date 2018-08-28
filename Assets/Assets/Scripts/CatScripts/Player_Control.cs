@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Control : MonoBehaviour {
-	private Cat_Control catControl;
-	private Cat_Utilites utils;
+	public Cat_Control catControl;
+	public Cat_Utilites utils;
 	public Chat_Text_Control chat;
-	private GameObject managerObject;
+	public GameObject managerObject;
 	private Manager_Script manager;
 	
 	private bool isRight;
@@ -27,7 +27,7 @@ public class Player_Control : MonoBehaviour {
 		manager = managerObject.GetComponent<Manager_Script>();
 		utils = managerObject.GetComponent<Cat_Utilites>();
 		catControl = GetComponent<Cat_Control>();
-		catControl.catName = manager.settings[0];
+		catControl.catName = manager.strSettings[0];
 		utils.usedNames.Add(catControl.catName);
 	}
 	

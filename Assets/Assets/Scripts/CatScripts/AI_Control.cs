@@ -11,10 +11,10 @@ public class AI_Control : MonoBehaviour {
 	// Use this for initialization
 	void Start (){
 		managerObject = GameObject.FindGameObjectWithTag("Manager");
-		manager = managerObject.GetComponent<Manager_Script>();
+		manager = managerObject.GetComponent<Manager_Script>(); 
 		string newName;
 		rank = catControl.rank;
-		if (rank == Cat_Control.Rank.Kit){
+		if (rank == Cat_Control.Rank.Kit){ 
 			newName = utils.RandKitName();
 		}
 		else if (rank == Cat_Control.Rank.Apprentice){

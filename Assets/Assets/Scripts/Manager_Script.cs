@@ -10,16 +10,19 @@ public class Manager_Script : MonoBehaviour {
 	public int currentScene;
 	private int lastScene;
 	public string PlayerName;
-	public List <string> settings;
+	public List <string> strSettings;
 	public List <bool> boolSettings;
+	public List <float> numSettings;
 	public GameObject[] locations;// Locations in scene
 	public GameObject[] cats; // Cats in scene
+	public GameObject[] otherManagers; //for removing other manager object in scene
 
 	public void Start (){
 		PlayerName = "Player Name";
 		music = GetComponent<Music_Manager>();
 		Scene scene = SceneManager.GetActiveScene();
 		currentScene = scene.buildIndex;
+		lastScene = scene.buildIndex;
 	}
 	
 	// Update is called once per frame
@@ -28,6 +31,7 @@ public class Manager_Script : MonoBehaviour {
 		currentScene = scene.buildIndex;
 		if (currentScene != lastScene){
 			onSceneChange();
+			lastScene = scene.buildIndex;
 		}
 		for (int i = 0; i < exits.Count; i++){
 			if (exits[i].startNewLevel == true){
@@ -36,6 +40,7 @@ public class Manager_Script : MonoBehaviour {
 		}
 		if (currentScene == 0){// Main menu
 			music.state = Music_Manager.MusicState.mainMenu;
+			music.UpdateSettings();
 		}
 		else if(currentScene == 1){// Camp
 			music.state = Music_Manager.MusicState.homeNormal;
@@ -54,5 +59,9 @@ public class Manager_Script : MonoBehaviour {
 	public void onSceneChange(){
 		cats = GameObject.FindGameObjectsWithTag("Cat"); 
 		locations = GameObject.FindGameObjectsWithTag("Location");
+
+		otherManagers = GameObject.FindGameObjectsWithTag("Manager");
+		Destroy(otherManagers[1]); // THERE CAN ONLY BE ONE!
+		otherManagers = null;
 	}
 }

@@ -24,7 +24,6 @@ public class Music_Manager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		mute = manager.boolSettings[0];
 		if (player.isPlaying == false){
 			PlaySong();
 		}
@@ -56,5 +55,10 @@ public class Music_Manager : MonoBehaviour {
 				Debug.Log("music state not defined in code!");
 			}
 		}
+	}
+
+	public void UpdateSettings(){
+		mute = manager.boolSettings[0];
+		player.volume = manager.numSettings[0];
 	}
 }

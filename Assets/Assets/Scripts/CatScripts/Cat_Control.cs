@@ -6,7 +6,6 @@ public class Cat_Control : MonoBehaviour {
 	public Cat_Sprite_Control spriteControl;
 	public Rigidbody2D physics;
 	[HideInInspector] public TextMesh text;
-	[HideInInspector] private ConstantForce2D climbForce;
 
 	//Control variables
 	[HideInInspector] public bool goRight;
@@ -41,7 +40,6 @@ public class Cat_Control : MonoBehaviour {
 	void Start () {
 		physics = GetComponent<Rigidbody2D> ();
 		text = GetComponent<TextMesh> ();
-		climbForce = GetComponent<ConstantForce2D> ();
 		text.text = catName;
 		age = 6;
 	}
@@ -76,9 +74,6 @@ public class Cat_Control : MonoBehaviour {
 			spriteControl.idle ();
 			speed = 0;
 		}
-	
-		physics.constraints = RigidbodyConstraints2D.FreezeRotation;//default values
-		climbForce.force = new Vector2 (0f, 0f);
 
 		//Control jumping/climbing
 		if (!onTree){
