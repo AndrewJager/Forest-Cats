@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class Cat_Control : MonoBehaviour {
-
-	public Cat_Sprite_Control spriteControl;
+	private GameObject managerObject;
+	public Cat_Sprite_Control spriteControl; 
 	public Rigidbody2D physics;
-	[HideInInspector] public TextMesh text;
+	private TextMesh text;
 
 	//Control variables
 	[HideInInspector] public bool goRight;
@@ -31,13 +31,14 @@ public class Cat_Control : MonoBehaviour {
 	//
 	public string catName;
 	public string alligence;
-	public enum Rank {None, Kit, Apprentice, Warrior, Healer, Deputy, Leader};
-	public Rank rank;
+	
+	public Globals.Rank rank;
 	public int age; //Moons
 
 	private 
 	// Use this for initialization
 	void Start () {
+		managerObject = GameObject.FindGameObjectWithTag("Manager");
 		physics = GetComponent<Rigidbody2D> ();
 		text = GetComponent<TextMesh> ();
 		text.text = catName;

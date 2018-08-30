@@ -7,23 +7,23 @@ public class AI_Control : MonoBehaviour {
 	private Manager_Script manager;
 	public Cat_Control catControl;
 	public Cat_Utilites utils;
-	public Cat_Control.Rank rank;
+	public Globals.Rank rank;
 	// Use this for initialization
 	void Start (){
 		managerObject = GameObject.FindGameObjectWithTag("Manager");
 		manager = managerObject.GetComponent<Manager_Script>(); 
 		string newName;
 		rank = catControl.rank;
-		if (rank == Cat_Control.Rank.Kit){ 
+		if (rank == Globals.Rank.Kit){ 
 			newName = utils.RandKitName();
 		}
-		else if (rank == Cat_Control.Rank.Apprentice){
+		else if (rank == Globals.Rank.Apprentice){
 			newName = utils.RandApprenticeName();
 		}
-		else if ((rank == Cat_Control.Rank.Warrior) || (rank == Cat_Control.Rank.Deputy) || (rank == Cat_Control.Rank.Healer)){
+		else if ((rank == Globals.Rank.Warrior) || (rank == Globals.Rank.Deputy) || (rank == Globals.Rank.Healer)){
 			newName = utils.RandWarriorName();
 		}
-		else if (rank == Cat_Control.Rank.Leader){
+		else if (rank == Globals.Rank.Leader){
 			newName = utils.RandLeaderName();
 		}
 		else{
