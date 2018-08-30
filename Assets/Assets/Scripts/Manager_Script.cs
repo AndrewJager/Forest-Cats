@@ -69,17 +69,15 @@ public class Manager_Script : MonoBehaviour {
 		}
 		otherManagers = null;
 		Debug.Log("scene changed");
-		WriteSaveFile(numSettings[1]); 
-		LoadSaveFile(numSettings[1]); // Load any data not just written in previous line
 	}
 
 	public void WriteSaveFile(float saveFile){ //really an int, but saved as a float
 		BinaryFormatter bf = new BinaryFormatter();
-		FileStream file = File.Open(Application.persistentDataPath + "/PlayerData" + saveFile + ".dat", FileMode.OpenOrCreate);
+		FileStream file = File.Create(Application.persistentDataPath + "/PlayerData" + saveFile + ".dat");
 		StoredData data = new StoredData();
 
-		data.PlayerName = strSettings[0];
-		data.saveFile = numSettings[1];
+		data.strings = strSettings;
+		data.numbers = numSettings;
 
 		bf.Serialize(file, data);
 		file.Close();
@@ -91,16 +89,16 @@ public class Manager_Script : MonoBehaviour {
 			StoredData data = (StoredData)bf.Deserialize(file);
 			file.Close();
 
-			strSettings[0] = data.PlayerName;
-			numSettings[1] = data.saveFile;
+			strSettings = data.strings;
+			numSettings = data.numbers;
 		}
 	}
 }
 
 [Serializable]
 class StoredData{
-	public string PlayerName; // strSettings[0]
-	public float saveFile; // numSettings[1]
+	public List<string> strings; // strSettings[0]
+	public List<float> numbers; // numSettings[1]
 	public string Volume;
 	public bool mute;
 }

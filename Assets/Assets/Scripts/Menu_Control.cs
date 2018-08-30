@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Menu_Control : MonoBehaviour {
+	private GameObject managerObject;
+	private Manager_Script manager;
+
 	public GameObject frontTrees;
 	public GameObject middleTrees;
 	public GameObject lightSprite;
 	public GameObject backTrees;
+
+	public UnityEngine.UI.Button saveButton;
+	public UnityEngine.UI.Button loadButton;
 
 	public float speed;
 	private float frontTreeSpeed;
@@ -19,6 +25,11 @@ public class Menu_Control : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		managerObject = GameObject.FindGameObjectWithTag("Manager");
+		manager = managerObject.GetComponent<Manager_Script>(); 
+
+		saveButton.onClick.AddListener(SaveClick);
+
 		frontTreeSpeed = speed * 2.5f;
 		middleTreeSpeed = speed * 2.0f;
 		lightSpeed = speed * 1.15f;
@@ -47,5 +58,9 @@ public class Menu_Control : MonoBehaviour {
 				goingLeft = true;
 			}
 		}
+	}
+
+	void SaveClick(){
+		manager.WriteSaveFile(manager.numSettings[1]);
 	}
 }
