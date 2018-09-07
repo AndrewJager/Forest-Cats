@@ -15,7 +15,6 @@ public class Location_Control : MonoBehaviour {
 	public float maxHeight;
 	public float offset;
 	[HideInInspector] public bool inZone;
-	readonly public bool isTree;
 	[HideInInspector] public bool isPlayerLeft;
 	private float playerX;
 	private float playerY;
@@ -24,11 +23,6 @@ public class Location_Control : MonoBehaviour {
 	public float spawnX;
 	public float spawnY;
 
-	public Location_Control(){
-	if (zoneType == ZoneType.Tree){
-			isTree = true;
-		}
-	}
 	void Start () {
 		if (zoneType == ZoneType.Tree){
 			zoneName = "Tree";
@@ -56,7 +50,7 @@ public class Location_Control : MonoBehaviour {
 			}
 			player_script.leftOfTree = isPlayerLeft;
 
-			if (isTree){
+			if (zoneType == ZoneType.Tree){
 				if (playerY < maxHeight){
 					player_script.onTree = true;
 				}
@@ -70,7 +64,7 @@ public class Location_Control : MonoBehaviour {
 			if (!isReset){ //Only set text to empty string once, to prevent from overwriting other zone scripts.
 				UIText.text = "";
 				isReset = true;
-				if (isTree){
+				if (zoneType == ZoneType.Tree){
 					player_script.onTree = false;
 				}
 			}

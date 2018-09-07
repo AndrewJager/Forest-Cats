@@ -78,6 +78,7 @@ public class Manager_Script : MonoBehaviour {
 
 		data.strings = strSettings;
 		data.numbers = numSettings;
+		data.bools = boolSettings;
 
 		bf.Serialize(file, data);
 		file.Close();
@@ -91,14 +92,14 @@ public class Manager_Script : MonoBehaviour {
 
 			strSettings = data.strings;
 			numSettings = data.numbers;
+			boolSettings = data.bools;
 		}
 	}
 }
 
 [Serializable]
 class StoredData{
-	public List<string> strings; // strSettings[0]
-	public List<float> numbers; // numSettings[1]
-	public string Volume;
-	public bool mute;
+	public List<string> strings; 
+	public List<float> numbers;
+	public List<bool> bools;
 }
