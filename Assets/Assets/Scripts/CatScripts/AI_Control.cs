@@ -12,6 +12,8 @@ public class AI_Control : MonoBehaviour {
 	void Start (){
 		managerObject = GameObject.FindGameObjectWithTag("Manager");
 		manager = managerObject.GetComponent<Manager_Script>(); 
+		catControl = GetComponent<Cat_Control>();
+		utils = managerObject.GetComponent<Cat_Utilites>();
 		string newName;
 		rank = catControl.rank;
 		if (rank == Globals.Rank.Kit){ 

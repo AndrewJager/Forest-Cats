@@ -18,27 +18,27 @@ public class Cat_Sprite_Control : MonoBehaviour {
 	}
 
 	public void idle () {
-		animControl.Play ("idle",0);
+		animControl.Play ("Idle",0);
 	}
 	public void walkLeft(){
 		sprite.flipX = false;
-		animControl.Play ("walk", 0);
+		animControl.Play ("Walk", 0);
 
 	}
 	public void walkRight(){
 		sprite.flipX = true;
-		animControl.Play ("walk", 0);
+		animControl.Play ("Walk", 0);
 	}
 	public void runLeft(){
 		sprite.flipX = false;
-		animControl.Play ("run", 0);
+		animControl.Play ("Run", 0);
 	}
 	public void runRight(){
 		sprite.flipX = true;
-		animControl.Play ("run", 0);
+		animControl.Play ("Run", 0);
 	}
 	public void sit(){
-		animControl.Play("sit", 0);
+		animControl.Play("Sit", 0);
 	}
 	public void rotateSprite(float angle){
 		transform.eulerAngles = new Vector3(0f, 0f, angle);
