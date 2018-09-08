@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class Manager_Script : MonoBehaviour {
 	private Music_Manager music;
 	public Player_Control player;
+	public List <GameObject> edges;
 	public List <Edge_Script> exits;
 	public int currentScene;
 	private int lastScene;
@@ -26,6 +27,7 @@ public class Manager_Script : MonoBehaviour {
 		Scene scene = SceneManager.GetActiveScene();
 		currentScene = scene.buildIndex;
 		lastScene = scene.buildIndex;
+		onSceneChange();
 	}
 	
 	// Update is called once per frame
@@ -36,9 +38,12 @@ public class Manager_Script : MonoBehaviour {
 			onSceneChange();
 			lastScene = scene.buildIndex;
 		}
-		for (int i = 0; i < exits.Count; i++){
-			if (exits[i].startNewLevel == true){
-				RunScene(exits[i].newScene);
+		if (exits.Count != 0){
+			for (int i = 0; i < exits.Count; i++){
+				if (exits[i].startNewLevel == true){
+					Debug.Log("run new scene?");
+					RunScene(exits[i].newScene);
+				}
 			}
 		}
 		if (currentScene == 0){// Main menu
@@ -47,6 +52,9 @@ public class Manager_Script : MonoBehaviour {
 		}
 		else if(currentScene == 1){// Camp
 			music.state = Music_Manager.MusicState.homeNormal;
+		}
+		else if (currentScene == 2){// Credits
+			music.state = Music_Manager.MusicState.credits;
 		}
 
 		cats = GameObject.FindGameObjectsWithTag("Cat"); 
@@ -68,6 +76,13 @@ public class Manager_Script : MonoBehaviour {
 			Destroy(otherManagers[1]); // THERE CAN ONLY BE ONE!
 		}
 		otherManagers = null;
+
+		edges.Clear();
+		exits.Clear();
+		foreach(GameObject edge in GameObject.FindGameObjectsWithTag("Edge")) {
+             edges.Add(edge);
+			 exits.Add(edge.GetComponent<Edge_Script>());
+         }
 		Debug.Log("scene changed");
 	}
 

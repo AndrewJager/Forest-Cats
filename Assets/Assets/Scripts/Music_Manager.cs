@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Music_Manager : MonoBehaviour {
 	public bool mute;
-	public enum MusicState {homeNormal, mainMenu, fight};
+	public enum MusicState {homeNormal, mainMenu, fight, credits};
 	private GameObject managerObject;
 	private Manager_Script manager;
 	public MusicState state;
 	private MusicState playingState;
 	public AudioClip [] home_normal;
 	public AudioClip [] main_menu;
+	public AudioClip [] credits;
 	AudioSource player;
 	// Use this for initialization
 	void Start () {
@@ -50,6 +51,11 @@ public class Music_Manager : MonoBehaviour {
 			}
 			else if (state == MusicState.fight){
 
+			}
+			else if (state == MusicState.credits){
+				AudioClip song = credits[Random.Range(0, credits.Length)];
+				player.clip = song;
+				player.Play();
 			}
 			else{
 				Debug.Log("music state not defined in code!");
