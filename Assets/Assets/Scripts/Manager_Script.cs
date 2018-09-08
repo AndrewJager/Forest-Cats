@@ -107,6 +107,7 @@ public class Manager_Script : MonoBehaviour {
 			strSettings = data.strings;
 			numSettings = data.numbers;
 			boolSettings = data.bools;
+			Debug.Log(Application.persistentDataPath);
 		}
 	}
 }

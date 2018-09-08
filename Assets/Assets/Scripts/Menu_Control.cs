@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Menu_Control : MonoBehaviour {
@@ -13,12 +14,16 @@ public class Menu_Control : MonoBehaviour {
 
 	public UnityEngine.UI.Button saveButton;
 	public UnityEngine.UI.Button loadButton;
+	public UnityEngine.UI.Button colorButton;
 	public UnityEngine.UI.Toggle saveA;
 	public UnityEngine.UI.Toggle saveB;
 	public UnityEngine.UI.Toggle saveC;
 	public UnityEngine.UI.Slider volume;
 	public UnityEngine.UI.Toggle mute;
 	public UnityEngine.UI.Text playerName;
+	public colorKey key;
+	public Material indicator;
+	public Color playerColor;
 
 	public float speed;
 	private float frontTreeSpeed;
@@ -69,12 +74,16 @@ public class Menu_Control : MonoBehaviour {
 	}
 
 	void SaveClick(){
+
 		// boolean settings
 		manager.boolSettings[0] = mute.isOn; //music mute
 
 		// number settings
 		// numSettings[0] is the save file, set at the end of this function
 		manager.numSettings[1] = volume.value; //music volume
+		manager.numSettings[2] = playerColor.r; //player color
+		manager.numSettings[3] = playerColor.g;
+		manager.numSettings[4] = playerColor.b;
 
 		// string settings
 		manager.strSettings[0] = playerName.text; // Player selected name
@@ -92,7 +101,7 @@ public class Menu_Control : MonoBehaviour {
 		}
 		manager.numSettings[0] = saveFile;
 		manager.WriteSaveFile(manager.numSettings[0]); //write to selected save file
-		Debug.Log("saved!");
+		UnityEngine.Debug.Log("saved!");
 	}
 
 	void LoadClick(){
@@ -111,9 +120,19 @@ public class Menu_Control : MonoBehaviour {
 
 		//save file is checked
 		volume.value = manager.numSettings[1];
+		playerColor.r = manager.numSettings[2]; 
+		playerColor.g = manager.numSettings[3];
+		playerColor.b = manager.numSettings[4];
 
 		playerName.text = manager.strSettings[0];
 
-		Debug.Log("Loaded!");
+		playerColor.a = 255;
+		indicator.color = playerColor;
+		key.KeySprite();
+		UnityEngine.Debug.Log("Loaded!");
+	}
+
+	public void SetColor(){
+		playerColor = indicator.color;
 	}
 }
