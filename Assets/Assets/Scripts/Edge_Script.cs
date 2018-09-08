@@ -24,7 +24,6 @@ public class Edge_Script : MonoBehaviour {
 	}
 	void OnTriggerEnter2D(Collider2D other){
 		if (goToNewLevel && other.name == "Player"){
-			Debug.Log("trigger");
 			startNewLevel = true;
 		}	
 	}

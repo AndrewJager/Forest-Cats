@@ -41,7 +41,6 @@ public class Manager_Script : MonoBehaviour {
 		if (exits.Count != 0){
 			for (int i = 0; i < exits.Count; i++){
 				if (exits[i].startNewLevel == true){
-					Debug.Log("run new scene?");
 					RunScene(exits[i].newScene);
 				}
 			}
