@@ -63,3 +63,4 @@ $RECYCLE.BIN/
 
 # Custom ignores
 Assets/Assets/music
+.vscode

@@ -72,7 +72,7 @@ public class Manager_Script : MonoBehaviour {
 
 		otherManagers = GameObject.FindGameObjectsWithTag("Manager");
 		if (otherManagers.Length > 1){
-			Destroy(otherManagers[0]); // THERE CAN ONLY BE ONE!
+			Destroy(otherManagers[0]); // THERE CAN ONLY BE ONE! (is this murder or suicide?)
 		}
 		otherManagers = null;
 
