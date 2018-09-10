@@ -20,7 +20,9 @@ public class Menu_Control : MonoBehaviour {
 	public UnityEngine.UI.Toggle saveC;
 	public UnityEngine.UI.Slider volume;
 	public UnityEngine.UI.Toggle mute;
-	public UnityEngine.UI.Text playerName;
+	public UnityEngine.UI.Text playerNameEntry;
+	public UnityEngine.UI.Text placeholder;
+	public UnityEngine.UI.Text playerNameDisplay;
 	public colorKey key;
 	public Material indicator;
 	public Color playerColor;
@@ -49,6 +51,9 @@ public class Menu_Control : MonoBehaviour {
 		backTreeSpeed = speed * 1.0f;
 
 		goingLeft = true;
+
+		LoadClick();
+		playerNameEntry.text = placeholder.text;
 	}
 	
 	// Update is called once per frame
@@ -74,7 +79,7 @@ public class Menu_Control : MonoBehaviour {
 	}
 
 	void SaveClick(){
-
+		playerNameDisplay.text = playerNameEntry.text;
 		// boolean settings
 		manager.boolSettings[0] = mute.isOn; //music mute
 
@@ -86,7 +91,7 @@ public class Menu_Control : MonoBehaviour {
 		manager.numSettings[4] = playerColor.b;
 
 		// string settings
-		manager.strSettings[0] = playerName.text; // Player selected name
+		manager.strSettings[0] = playerNameEntry.text; // Player selected name
 
 
 		//toggle group ensures that only one of these will be selected
@@ -124,7 +129,8 @@ public class Menu_Control : MonoBehaviour {
 		playerColor.g = manager.numSettings[3];
 		playerColor.b = manager.numSettings[4];
 
-		playerName.text = manager.strSettings[0];
+		playerNameDisplay.text = manager.strSettings[0];
+		placeholder.text = manager.strSettings[0];
 
 		playerColor.a = 255;
 		indicator.color = playerColor;

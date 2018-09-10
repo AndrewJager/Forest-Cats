@@ -11,8 +11,6 @@ public class colorKey : MonoBehaviour {
 	public Color earColor;
 	public Color legColor;
 	public Material indicator;
-	public int x;
-	public int y;
 	// Use this for initialization
 	void Start () {
 		sprite = GetComponent<SpriteRenderer>();

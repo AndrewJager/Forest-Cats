@@ -80,6 +80,6 @@ public class Player_Control : MonoBehaviour {
 	}
 
 	void Speak(){
-		chat.newMessage(utils.RandWarriorName());
+		//chat.newMessage(utils.RandWarriorName());
 	}
 }
