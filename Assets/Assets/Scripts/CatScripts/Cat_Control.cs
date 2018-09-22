@@ -31,8 +31,11 @@ public class Cat_Control : MonoBehaviour {
 	//
 	public string catName;
 	public string alligence;
+	public float furRed;
+	public float furGreen;
+	public float furBlue;
 	
-	public Globals.Rank rank;
+	public Globals.RANK rank;
 	public int age; //Moons
 
 	private 

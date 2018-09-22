@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class Manager_Script : MonoBehaviour {
 	private Music_Manager music;
+	private Cat_Utilites utils;
 	public Player_Control player;
 	public List <GameObject> edges;
 	public List <Edge_Script> exits;
@@ -21,9 +22,13 @@ public class Manager_Script : MonoBehaviour {
 	public GameObject[] cats; // Cats in scene
 	public GameObject[] otherManagers; //for removing other manager object in scene
 
+	private List <string> catNames; 
+
 	public void Start (){
 		PlayerName = "Player Name";
+		numSettings[0] = 0; //Save file not set;
 		music = GetComponent<Music_Manager>();
+		utils = GetComponent<Cat_Utilites>();
 		Scene scene = SceneManager.GetActiveScene();
 		currentScene = scene.buildIndex;
 		lastScene = scene.buildIndex;
@@ -55,8 +60,6 @@ public class Manager_Script : MonoBehaviour {
 		else if (currentScene == 2){// Credits
 			music.state = Music_Manager.MusicState.credits;
 		}
-
-		cats = GameObject.FindGameObjectsWithTag("Cat"); 
 	}
 
 	void Awake(){
@@ -67,6 +70,13 @@ public class Manager_Script : MonoBehaviour {
 	}
 
 	public void onSceneChange(){
+		if (numSettings[0] == 0){
+			LoadSaveFile();
+		}
+		else{
+			LoadSaveFile(numSettings[0]);
+		}
+
 		cats = GameObject.FindGameObjectsWithTag("Cat"); 
 		locations = GameObject.FindGameObjectsWithTag("Location");
 
@@ -82,6 +92,7 @@ public class Manager_Script : MonoBehaviour {
              edges.Add(edge);
 			 exits.Add(edge.GetComponent<Edge_Script>());
          }
+
 		Debug.Log("scene changed");
 	}
 
@@ -97,7 +108,7 @@ public class Manager_Script : MonoBehaviour {
 		bf.Serialize(file, data);
 		file.Close();
 	}
-	public void LoadSaveFile(float saveFile){
+	public void LoadSaveFile(float saveFile = 1){
 		if (File.Exists(Application.persistentDataPath + "/PlayerData" + saveFile + ".dat")){
 			BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Open(Application.persistentDataPath + "/PlayerData" + saveFile + ".dat", FileMode.Open);

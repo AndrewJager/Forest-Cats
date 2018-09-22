@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 using UnityEngine;
 
 public class Cat_Utilites : MonoBehaviour {
@@ -28,11 +31,11 @@ public class Cat_Utilites : MonoBehaviour {
 	public List <string> usedNames;
 	
 	public string RandFirstName (){
-		return firstNames[Random.Range(0, firstNames.Length)];
+		return firstNames[UnityEngine.Random.Range(0, firstNames.Length)];
 	}
 	
 	public string RandLastName (){
-		return lastNames[Random.Range(0, lastNames.Length)];
+		return lastNames[UnityEngine.Random.Range(0, lastNames.Length)];
 	}
 	
 	public string RandWarriorName (){
@@ -49,5 +52,26 @@ public class Cat_Utilites : MonoBehaviour {
 
 	public string RandKitName(){
 		return RandFirstName() + "kit";
+	}
+
+	public string RandName(Globals.RANK rank){
+		if (rank == Globals.RANK.Leader){
+			return RandLeaderName();
+		}
+		else if (rank == Globals.RANK.Warrior){
+			return RandWarriorName();
+		}
+		else if (rank == Globals.RANK.Apprentice){
+			return RandApprenticeName();
+		}
+		else if (rank == Globals.RANK.Healer){
+			return RandWarriorName();
+		}
+		else if (rank == Globals.RANK.Kit){
+			return RandKitName();
+		}
+		else{
+			return "invalid rank in RandName";
+		}
 	}
 }

@@ -27,7 +27,6 @@ public class Player_Control : MonoBehaviour {
 		manager = managerObject.GetComponent<Manager_Script>();
 		utils = managerObject.GetComponent<Cat_Utilites>();
 		catControl = GetComponent<Cat_Control>();
-		catControl.catName = manager.strSettings[0];
 		utils.usedNames.Add(catControl.catName);
 	}
 	
