@@ -11,6 +11,7 @@ public class AI_Control : MonoBehaviour {
 	public Globals.RANK rank;
 
 	private int stepper;
+	private int STEP_LIMIT = 45;
 	// Use this for initialization
 	void Start (){
 		managerObject = GameObject.FindGameObjectWithTag("Manager");
@@ -19,29 +20,17 @@ public class AI_Control : MonoBehaviour {
 		utils = managerObject.GetComponent<Cat_Utilites>();
 		string newName;
 		rank = catControl.rank;
-		if (rank == Globals.RANK.Kit){ 
-			newName = utils.RandKitName();
-		}
-		else if (rank == Globals.RANK.Apprentice){
-			newName = utils.RandApprenticeName();
-		}
-		else if ((rank == Globals.RANK.Warrior) || (rank == Globals.RANK.Deputy) || (rank == Globals.RANK.Healer)){
-			newName = utils.RandWarriorName();
-		}
-		else if (rank == Globals.RANK.Leader){
-			newName = utils.RandLeaderName();
-		}
-		else{
-			newName = utils.RandFirstName();
-		}
+		newName = utils.RandName(rank);
 		catControl.catName = newName;
 		utils.usedNames.Add(newName);
+
+		stepper = Random.Range(0, STEP_LIMIT);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		UpdateProperites(); // Should do this at a better time, like scene change;
-		RandomMove(stepper, 45);
+		RandomMove(stepper, STEP_LIMIT);
 	}
 
 	void FixedUpdate(){
